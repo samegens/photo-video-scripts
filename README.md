@@ -1,4 +1,4 @@
-# Photo Video scripts
+# Photo & Video scripts
 
 Scripts that I use to organize and fix my photo and video collection.
 
