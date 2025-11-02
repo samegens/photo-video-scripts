@@ -25,7 +25,11 @@ for file in "${jpg_files[@]}"; do
         if [[ "$dirname" =~ ^([0-9]{4})-([0-9]{2})-([0-9]{2}) ]]; then
             date_str="${dirname:0:10}"
             echo "  Found date in directory: $date_str"
-            
+
+            # Set EXIF date tags to yyyy-mm-dd 12:00:00
+            exiftool -overwrite_original -MediaCreateDate="$date_str 12:00:00" -CreateDate="$date_str 12:00:00" -DateCreated="$date_str 12:00:00" "$file"
+            echo "  ✓ Set EXIF date tags to $date_str 12:00:00"
+
             # Set modification time to yyyy-mm-dd 12:00
             touch -t "${date_str//\-/}1200" "$file"
             echo "  ✓ Set modification time to $date_str 12:00"
